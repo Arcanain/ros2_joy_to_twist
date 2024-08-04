@@ -1,0 +1,10 @@
+/home/tom/ros2_ws/src/ros2_joy_to_twist/build/CMakeFiles/uninstall.dir
+/home/tom/ros2_ws/src/ros2_joy_to_twist/build/CMakeFiles/ros2_joy_to_twist_uninstall.dir
+/home/tom/ros2_ws/src/ros2_joy_to_twist/build/CMakeFiles/joy_to_twist.dir
+/home/tom/ros2_ws/src/ros2_joy_to_twist/build/CMakeFiles/test.dir
+/home/tom/ros2_ws/src/ros2_joy_to_twist/build/CMakeFiles/edit_cache.dir
+/home/tom/ros2_ws/src/ros2_joy_to_twist/build/CMakeFiles/rebuild_cache.dir
+/home/tom/ros2_ws/src/ros2_joy_to_twist/build/CMakeFiles/list_install_components.dir
+/home/tom/ros2_ws/src/ros2_joy_to_twist/build/CMakeFiles/install.dir
+/home/tom/ros2_ws/src/ros2_joy_to_twist/build/CMakeFiles/install/local.dir
+/home/tom/ros2_ws/src/ros2_joy_to_twist/build/CMakeFiles/install/strip.dir
