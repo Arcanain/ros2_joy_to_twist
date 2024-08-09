@@ -24,6 +24,12 @@ ament_target_dependencies(joy_to_twist rclcpp std_msgs sensor_msgs geometry_msgs
 install(TARGETS
   joy_to_twist 
   DESTINATION lib/${PROJECT_NAME})
+
+# Install other files
+install(DIRECTORY
+  launch
+  DESTINATION share/${PROJECT_NAME}
+)
   
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

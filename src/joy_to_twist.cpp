@@ -27,11 +27,11 @@ private:
 
     last_cmd_vel_joystick_ = geometry_msgs::msg::Twist();
 
-    last_cmd_vel_joystick_.linear.x = msg->axes[1] * 0.25;
+    last_cmd_vel_joystick_.linear.x = msg->axes[1] * 0.5;
     // 無線の時
     //last_cmd_vel_joystick_.angular.z = msg->axes[2] * 1.0;
     // 有線の時
-    last_cmd_vel_joystick_.angular.z = msg->axes[3] * 0.5;
+    last_cmd_vel_joystick_.angular.z = msg->axes[3] * 1.0;
 
   }
 
