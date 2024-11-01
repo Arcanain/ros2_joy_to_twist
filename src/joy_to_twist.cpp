@@ -12,7 +12,7 @@ public:
     joy_sub = this->create_subscription<sensor_msgs::msg::Joy>(
       "/joy", 10, std::bind(&JoyToTwist::joyCallback, this, std::placeholders::_1));
 
-    vel_pub = this->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel_joystick", 10);
+    vel_pub = this->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 10);
 
     timer_ = this->create_wall_timer(100ms, std::bind(&JoyToTwist::timerCallback, this));
   }
