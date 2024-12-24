@@ -7,7 +7,7 @@ class JoyToTwist : public rclcpp::Node
 {
 public:
   JoyToTwist()
-    : Node("joy_to_twist"), previous_linear_x_(0.0), previous_angular_z_(0.0), previous_time_(this->get_clock()->now())
+    : Node("joy_to_twist"), previous_linear_x_(0.0), previous_angular_z_(0.0), previous_time_(this->get_clock()->now()), last_cmd_vel_joystick_()
   {
     joy_sub = this->create_subscription<sensor_msgs::msg::Joy>(
       "/joy", 10, std::bind(&JoyToTwist::joyCallback, this, std::placeholders::_1));
@@ -21,11 +21,13 @@ private:
   void joyCallback(const sensor_msgs::msg::Joy::SharedPtr msg)
   {
     if (msg->axes.size() != 8) {
+      last_cmd_vel_joystick_.linear.x = 0.0;
+      last_cmd_vel_joystick_.angular.z = 0.0;
       return;
     }
 
-    last_cmd_vel_joystick_.linear.x = msg->axes[1] * 0.5;
-    last_cmd_vel_joystick_.angular.z = msg->axes[3] * 1.0;
+    last_cmd_vel_joystick_.linear.x = msg->axes[1] * 0.8;
+    last_cmd_vel_joystick_.angular.z = msg->axes[2] * 0.5;
   }
 
   void timerCallback()
@@ -39,7 +41,7 @@ private:
       // 角加速度を計算
       double delta_angular_z = last_cmd_vel_joystick_.angular.z - previous_angular_z_;
       double angular_acceleration = delta_angular_z / dt;
-      double max_angular_acceleration = 0.5; // rad/s²
+      double max_angular_acceleration = 1.2; // rad/s²
 
       // 線加速度を計算
       double delta_linear_x = last_cmd_vel_joystick_.linear.x - previous_linear_x_;
@@ -49,11 +51,6 @@ private:
       // 角加速度が上限を超えた場合に制限を適用
       if (std::abs(angular_acceleration) > max_angular_acceleration) {
         last_cmd_vel_joystick_.angular.z = previous_angular_z_ + std::copysign(max_angular_acceleration * dt, delta_angular_z);
-      }
-
-      // 線加速度が上限を超えた場合に制限を適用
-      if (std::abs(linear_acceleration) > max_linear_acceleration) {
-        last_cmd_vel_joystick_.linear.x = previous_linear_x_ + std::copysign(max_linear_acceleration * dt, delta_linear_x);
       }
 
       // 前回の速度と時間を更新
