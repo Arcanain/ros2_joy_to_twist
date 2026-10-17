@@ -26,8 +26,8 @@ private:
       return;
     }
 
-    last_cmd_vel_joystick_.linear.x = msg->axes[1] * 0.8;
-    last_cmd_vel_joystick_.angular.z = msg->axes[2] * 0.5;
+    last_cmd_vel_joystick_.linear.x = msg->axes[1] * 1.2;
+    last_cmd_vel_joystick_.angular.z = msg->axes[2] * 0.8;
   }
 
   void timerCallback()
